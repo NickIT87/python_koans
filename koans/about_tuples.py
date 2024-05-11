@@ -37,23 +37,23 @@ class AboutTuples(Koan):
         self.assertEqual((1, 2, 5, "boom"), count_of_three)
 
     def test_tuples_of_one_look_peculiar(self):
-        self.assertEqual(__, (1).__class__)
-        self.assertEqual(__, (1,).__class__)
-        self.assertEqual(__, ("I'm a tuple",).__class__)
-        self.assertEqual(__, ("Not a tuple").__class__)
+        self.assertEqual(int, (1).__class__)
+        self.assertEqual(tuple, (1,).__class__)
+        self.assertEqual(tuple, ("I'm a tuple",).__class__)
+        self.assertEqual(str, ("Not a tuple").__class__)
 
     def test_tuple_constructor_can_be_surprising(self):
-        self.assertEqual(__, tuple("Surprise!"))
+        self.assertEqual(('S', 'u', 'r', 'p', 'r', 'i', 's', 'e', '!'), tuple("Surprise!"))
 
     def test_creating_empty_tuples(self):
-        self.assertEqual(__ , ())
-        self.assertEqual(__ , tuple())  # Sometimes less confusing
+        self.assertEqual(tuple(), ())
+        self.assertEqual((), tuple())  # Sometimes less confusing
 
     def test_tuples_can_be_embedded(self):
         lat = (37, 14, 6, 'N')
         lon = (115, 48, 40, 'W')
         place = ('Area 51', lat, lon)
-        self.assertEqual(__, place)
+        self.assertEqual(('Area 51', (37, 14, 6, 'N'), (115, 48, 40, 'W')), place)
 
     def test_tuples_are_good_for_representing_records(self):
         locations = [
@@ -63,5 +63,5 @@ class AboutTuples(Koan):
 
         locations.append( ("Cthulu", (26, 40, 1, 'N'), (70, 45, 7, 'W')) )
 
-        self.assertEqual(__, locations[2][0])
-        self.assertEqual(__, locations[0][1][2])
+        self.assertEqual("Cthulu", locations[2][0])
+        self.assertEqual(15.56, locations[0][1][2])

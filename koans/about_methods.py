@@ -12,7 +12,7 @@ def my_global_function(a,b):
 
 class AboutMethods(Koan):
     def test_calling_a_global_function(self):
-        self.assertEqual(__, my_global_function(2,3))
+        self.assertEqual(5, my_global_function(2,3))
 
     # NOTE: Wrong number of arguments is not a SYNTAX error, but a
     # runtime error.
