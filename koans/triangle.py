@@ -15,25 +15,27 @@
 #   about_triangle_project.py
 # and
 #   about_triangle_project_2.py
-#
-# def triangle(a, b, c):
-#     # DELETE 'PASS' AND WRITE THIS CODE
-#     # if a == b and b == c:
-#     #     return 'equilateral'
-#     # elif a == b or b == c or a == c:
-#     #     return 'isosceles'
-#     # else:
-#     #     return 'scalene'
-#     if a == b == c:
-#         return 'equilateral'
-#     elif a == b or b == c or a == c:
-#         return 'isosceles'
-#     else:
-#         return 'scalene'
 
+#triangle = lambda a, b, c: 'equilateral' if a == b == c else 'isosceles' if a == b or b == c or a == c else 'scalene'
 
-triangle = lambda a, b, c: 'equilateral' if a == b == c else 'isosceles' if a == b or b == c or a == c else 'scalene'
+def triangle(a, b, c):
+    sides = sorted([a, b, c])
 
+    # 1. Проверка на положительные числа
+    if sides[0] <= 0:
+        raise TriangleError("Sides must be positive")
+
+    # 2. Неравенство треугольника
+    if sides[0] + sides[1] <= sides[2]:
+        raise TriangleError("Invalid triangle")
+
+    # 3. Классификация
+    if a == b == c:
+        return 'equilateral'
+    elif a == b or b == c or a == c:
+        return 'isosceles'
+    else:
+        return 'scalene'
 
 # Error class used in part 2.  No need to change this code.
 class TriangleError(Exception):
