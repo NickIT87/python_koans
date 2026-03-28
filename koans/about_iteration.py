@@ -62,7 +62,7 @@ class AboutIteration(Koan):
         for item in filter(is_even, seq):
             even_numbers.append(item)
 
-        self.assertEqual(__, even_numbers)
+        self.assertEqual([2, 4, 6], even_numbers)
 
     def test_filter_returns_all_items_matching_criterion(self):
         def is_big_name(item):
@@ -71,8 +71,8 @@ class AboutIteration(Koan):
         names = ["Jim", "Bill", "Clarence", "Doug", "Eli", "Elizabeth"]
         iterator = filter(is_big_name, names)
 
-        self.assertEqual(__, next(iterator))
-        self.assertEqual(__, next(iterator))
+        self.assertEqual("Clarence", next(iterator))
+        self.assertEqual("Elizabeth", next(iterator))
 
         try:
             next(iterator)
@@ -80,7 +80,7 @@ class AboutIteration(Koan):
         except StopIteration:
             msg = 'Ran out of big names'
 
-        self.assertEquals(__, msg)
+        self.assertEqual('Ran out of big names', msg)
 
     # ------------------------------------------------------------------
 
@@ -96,13 +96,13 @@ class AboutIteration(Koan):
         # to the functools module.
 
         result = functools.reduce(self.add, [2, 3, 4])
-        self.assertEqual(__, result.__class__)
+        self.assertEqual(int, result.__class__)
         # Reduce() syntax is same as Python 2
 
-        self.assertEqual(__, result)
+        self.assertEqual(9, result)
 
         result2 = functools.reduce(self.multiply, [2, 3, 4], 1)
-        self.assertEqual(__, result2)
+        self.assertEqual(24, result2)
 
         # Extra Credit:
         # Describe in your own words what reduce does.
@@ -113,14 +113,14 @@ class AboutIteration(Koan):
         for num in range(1,5):
             pass
 
-        self.assertEqual(__, num)
+        self.assertEqual(4, num)
 
     # ------------------------------------------------------------------
 
     def test_all_iteration_methods_work_on_any_sequence_not_just_lists(self):
         # Ranges are an iterable sequence
         result = map(self.add_ten, range(1,4))
-        self.assertEqual(__, list(result))
+        self.assertEqual([11, 12, 13], list(result))
 
     def test_lines_in_a_file_are_iterable_sequences_too(self):
         def make_upcase(line):
@@ -128,5 +128,5 @@ class AboutIteration(Koan):
 
         file = open("example_file.txt")
         upcase_lines = map(make_upcase, file.readlines())
-        self.assertEqual(__, list(upcase_lines))
+        self.assertEqual(['This', 'Is', 'A','Test'], list(upcase_lines))
         file.close()
