@@ -34,7 +34,35 @@ from runner.koan import *
 
 def score(dice):
     # You need to write this method
-    pass
+    if not dice:
+        return 0
+
+    counts = [0] * 7  # индексы 1..6
+
+    # считаем количество каждой кости
+    for d in dice:
+        counts[d] += 1
+
+    total = 0
+
+    for num in range(1, 7):
+        count = counts[num]
+
+        # тройки
+        if count >= 3:
+            if num == 1:
+                total += 1000
+            else:
+                total += num * 100
+            count -= 3
+
+        # остаток
+        if num == 1:
+            total += count * 100
+        elif num == 5:
+            total += count * 50
+
+    return total
 
 class AboutScoringProject(Koan):
     def test_score_of_an_empty_list_is_zero(self):
